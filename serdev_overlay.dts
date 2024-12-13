@@ -1,0 +1,18 @@
+/dts-v1/;
+/plugin/;
+/ {
+    compatible = "brcm,bcm2835";
+    fragment@0 { # một khối trong DTO để thay đổi một node trong DT gốc
+        target = <&uart1>; # vị trí node được cấu hình
+        __overlay__ { # cung cấp overlay để không phải sửa source DT gốc
+            echodev { # tên thiết bị
+
+                # compatible cho biết có driver tương ứng
+                # khi khởi động, kernel tìm driver hỗ trợ brightlight,echodev để khởi tạo thiết bị echodev
+                compatible = "brightlight,echodev"; 
+                
+                status = "okay"; # thiết bị được kích hoạt
+            };
+        };
+    };
+};
